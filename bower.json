@@ -1,0 +1,20 @@
+{
+  "name": "CreateJsEffectsLibrary",
+  "version": "0.0.1",
+  "homepage": "https://github.com/seltzlab/CreateJsEffectsLibrary",
+  "authors": [
+    "Antonino Caccamo <antonio@seltzlab.com>"
+  ],
+  "description": "Simple canvas effects library based on CreateJS",
+  "main": "build/createjseffectslibrary-0.0.1.min.js",
+  "keywords": [
+    "canvas",
+    "createjs",
+    "effects"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ]
+}

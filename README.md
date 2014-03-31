@@ -7,8 +7,8 @@ Simple canvas effects library based on http://www.createjs.com
 ```Javascript
 var effect = new CreateJsEffectsLibrary.SimpleExplosion({}, x, y);
 stage.addChild(effect);
-effect.animate();
 stage.update();
+effect.animate();
 ```
 
 Configuration
@@ -31,8 +31,8 @@ Configuration
 ```Javascript
 var effect = new CreateJsEffectsLibrary.Explosion({}, x, y);
 stage.addChild(effect);
-effect.animate();
 stage.update();
+effect.animate();
 ```
 
 Configuration
@@ -54,8 +54,8 @@ Configuration
 ```Javascript
 var effect = new CreateJsEffectsLibrary.InkStain({}, x, y);
 stage.addChild(effect);
-effect.animate();
 stage.update();
+effect.animate();
 ```
 
 Configuration

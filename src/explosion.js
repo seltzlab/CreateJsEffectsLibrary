@@ -72,6 +72,6 @@
         }
     };
 
-    CreateJsEffectsLibrary.Explosion = Explosion;
+    window.CreateJsEffectsLibrary.Explosion = Explosion;
 
 }(window));

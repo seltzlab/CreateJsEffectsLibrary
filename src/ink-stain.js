@@ -65,6 +65,6 @@
         }
     };
 
-    CreateJsEffectsLibrary.InkStain = InkStain;
+    window.CreateJsEffectsLibrary.InkStain = InkStain;
 
 }(window));

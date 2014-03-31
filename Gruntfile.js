@@ -5,13 +5,15 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       dist: {
-        src: ['src/effects.js', 'src/simple-explosion.js', 'src/explosion.js', 'src/inkstain.js'],
+        src: ['src/effect.js', 'src/simple-explosion.js', 'src/explosion.js', 'src/ink-stain.js'],
         dest: 'build/<%= pkg.name.toLowerCase() %>-<%= pkg.version %>.js'
       }
     },
     uglify: {
       options: {
-        wrap: "CreateJsEffectsLibrary"
+        //wrap: "CreateJsEffectsLibrary",
+        //exportAll: true,
+        mangle: true
       },
       my_target: {
         files: {

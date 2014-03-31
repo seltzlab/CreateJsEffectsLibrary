@@ -1,4 +1,4 @@
-var CreateJsEffectsLibrary = CreateJsEffectsLibrary || {};
+window.CreateJsEffectsLibrary = {};
 
 (function() {
 
@@ -37,5 +37,5 @@ var CreateJsEffectsLibrary = CreateJsEffectsLibrary || {};
         return {};
     };
     
-    CreateJsEffectsLibrary.Effect = Effect;
-})();
+    window.CreateJsEffectsLibrary.Effect = Effect;
+})(window);

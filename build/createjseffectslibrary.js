@@ -17,10 +17,8 @@ window.CreateJsEffectsLibrary = {};
     p.getParticle = function(x, y, r, color) {
         var particle = new createjs.Shape();
         particle.graphics.beginFill(color.hexString()).drawCircle(0, 0, r);
-        particle.x = x;
-        particle.y = y;
-        
-        particle.cache(-r, -r, r * 2, r * 2);
+        //particle.x = x;
+        //particle.y = y;
         
         return particle;
     };
@@ -299,7 +297,6 @@ window.CreateJsEffectsLibrary = {};
         
         this.points = [];
         
-        //g.moveTo(0, 0);
         var rad = 0,
             arcrad = 0,
             px = 0,

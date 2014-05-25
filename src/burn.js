@@ -29,7 +29,6 @@
         
         this.points = [];
         
-        //g.moveTo(0, 0);
         var rad = 0,
             arcrad = 0,
             px = 0,

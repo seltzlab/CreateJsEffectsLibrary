@@ -20,8 +20,6 @@ window.CreateJsEffectsLibrary = {};
         particle.x = x;
         particle.y = y;
         
-        particle.cache(-r, -r, r * 2, r * 2);
-        
         return particle;
     };
     

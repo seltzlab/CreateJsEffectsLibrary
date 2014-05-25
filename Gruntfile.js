@@ -5,8 +5,8 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       dist: {
-        src: ['src/effect.js', 'src/simple-explosion.js', 'src/explosion.js', 'src/ink-stain.js', 'src/burn.js'],
-        dest: 'build/<%= pkg.name.toLowerCase() %>-<%= pkg.version %>.js'
+        src: ['src/effect.js', 'src/simple-explosion.js', 'src/explosion.js', 'src/ink-stain.js', 'src/burn.js', 'src/fireworks.js'],
+        dest: 'build/<%= pkg.name.toLowerCase() %>.js'
       }
     },
     uglify: {
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          'build/<%= pkg.name.toLowerCase() %>-<%= pkg.version %>.min.js': ['build/<%= pkg.name.toLowerCase() %>-<%= pkg.version %>.js']
+          'build/<%= pkg.name.toLowerCase() %>.min.js': ['build/<%= pkg.name.toLowerCase() %>.js']
         }
       }
     }

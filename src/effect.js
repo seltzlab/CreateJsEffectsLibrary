@@ -16,10 +16,11 @@ window.CreateJsEffectsLibrary = {};
     
     p.getParticle = function(x, y, r, color) {
         var particle = new createjs.Shape();
-        
         particle.graphics.beginFill(color.hexString()).drawCircle(0, 0, r);
         particle.x = x;
         particle.y = y;
+        
+        particle.cache(-r, -r, r * 2, r * 2);
         
         return particle;
     };

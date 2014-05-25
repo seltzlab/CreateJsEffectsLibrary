@@ -1,6 +1,6 @@
 {
   "name": "CreateJsEffectsLibrary",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "description": "Simple canvas effects library based on CreateJS",
   "main": "effect.js",
   "scripts": {

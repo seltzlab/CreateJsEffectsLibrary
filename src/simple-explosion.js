@@ -19,7 +19,8 @@
         max_speed: 40.0,
         min_scale: 1.0,
         max_scale: 4.0,
-        max_particles: 10
+        max_particles: 10,
+        show_hole: true
     };
 
     p.getRandomColor = function() {
@@ -31,6 +32,7 @@
         
         this.ContainerInitialize();
 
+        var maxRadius = 0;
         for (var angle = 0; angle < 360; angle += Math.round(360 / this.configuration.max_particles)) {
             
             var particleColor = new Color(this.getRandomColor()).alpha(0.7);
@@ -46,15 +48,28 @@
             particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
             particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
 
+            var particleMaxRadius = particle.scaleSpeed * r;
+            if (particleMaxRadius > maxRadius) {
+                maxRadius = particleMaxRadius;
+            }
+            
             this.addChild(particle);
         }
 
         // top particle
         var particleColor = new Color(this.getRandomColor()).alpha(0.7);
         var particle = this.getParticle(0, 0, this.configuration.max_radius, particleColor);
-        particle.scaleSpeed = this.configuration.max_radius;
+        particle.scaleSpeed = this.configuration.max_scale;
         this.addChild(particle);
 
+        // hole particle
+        if (this.configuration.show_hole === true) {
+            var particleColor = new Color('#333');
+            var particle = this.getParticle(0, 0, maxRadius, particleColor);
+            particle.alpha = 0.5;
+            this.addChildAt(particle, 0);
+        }
+        
         this.x = x;
         this.y = y;
 
@@ -65,10 +80,12 @@
         
         for (var i = 0; i < this.getNumChildren(); i++) {
             var particle = this.getChildAt(i);
+            if (typeof particle.scaleSpeed !== 'undefined') {
             createjs.Tween.get(particle, {loop: false})
                 .to({scaleX: particle.scaleSpeed, scaleY: particle.scaleSpeed}, this.configuration.duration / 2, createjs.Ease.circOut)
                 .wait(this.randomFloat(100, 500))
                 .to({scaleX: 0, scaleY: 0, x: particle.velocityX, y: particle.velocityY}, this.configuration.duration / 2, createjs.Ease.quadOut);
+            }
         }
     };
 

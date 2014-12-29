@@ -16,8 +16,8 @@
     Burn.defaultConfiguration = {
         min_radius: 10.0,
         max_radius: 12.0,
-        radial_gradient_colors: ["#fff","#cc0000", '#3A2D23'],
-        radial_gradient_distribution: [0.5, 0.8, 1]
+        radial_gradient_colors: ["rgba(0, 0, 0, 0)","#cc0000", '#3A2D23'],
+        radial_gradient_distribution: [0.2, 0.7, 0.9]
     };
 
     p.initialize = function(x, y) {
@@ -25,7 +25,7 @@
         this.ContainerInitialize();
 
         this.radius = this.randomFloat(this.configuration.min_radius, this.configuration.max_radius);
-        var g = new createjs.Graphics().beginRadialGradientFill(this.configuration.radial_gradient_colors, this.configuration.radial_gradient_distribution, 0, 0, 1, 0, 0, this.radius).setStrokeStyle(0.1).beginStroke('#cc0000');
+        var g = new createjs.Graphics().beginRadialGradientFill(this.configuration.radial_gradient_colors, this.configuration.radial_gradient_distribution, 0, 0, 0, 0, 0, this.radius).setStrokeStyle(0.1).beginStroke('#cc0000');
         
         this.points = [];
         

@@ -17,8 +17,8 @@ window.CreateJsEffectsLibrary = {};
     p.getParticle = function(x, y, r, color) {
         var particle = new createjs.Shape();
         particle.graphics.beginFill(color.hexString()).drawCircle(0, 0, r);
-        //particle.x = x;
-        //particle.y = y;
+        particle.x = x;
+        particle.y = y;
         
         return particle;
     };
@@ -60,7 +60,8 @@ window.CreateJsEffectsLibrary = {};
         max_speed: 40.0,
         min_scale: 1.0,
         max_scale: 4.0,
-        max_particles: 10
+        max_particles: 10,
+        show_hole: true
     };
 
     p.getRandomColor = function() {
@@ -72,6 +73,7 @@ window.CreateJsEffectsLibrary = {};
         
         this.ContainerInitialize();
 
+        var maxRadius = 0;
         for (var angle = 0; angle < 360; angle += Math.round(360 / this.configuration.max_particles)) {
             
             var particleColor = new Color(this.getRandomColor()).alpha(0.7);
@@ -87,15 +89,28 @@ window.CreateJsEffectsLibrary = {};
             particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
             particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
 
+            var particleMaxRadius = particle.scaleSpeed * r;
+            if (particleMaxRadius > maxRadius) {
+                maxRadius = particleMaxRadius;
+            }
+            
             this.addChild(particle);
         }
 
         // top particle
         var particleColor = new Color(this.getRandomColor()).alpha(0.7);
         var particle = this.getParticle(0, 0, this.configuration.max_radius, particleColor);
-        particle.scaleSpeed = this.configuration.max_radius;
+        particle.scaleSpeed = this.configuration.max_scale;
         this.addChild(particle);
 
+        // hole particle
+        if (this.configuration.show_hole === true) {
+            var particleColor = new Color('#333');
+            var particle = this.getParticle(0, 0, maxRadius, particleColor);
+            particle.alpha = 0.5;
+            this.addChildAt(particle, 0);
+        }
+        
         this.x = x;
         this.y = y;
 
@@ -106,10 +121,12 @@ window.CreateJsEffectsLibrary = {};
         
         for (var i = 0; i < this.getNumChildren(); i++) {
             var particle = this.getChildAt(i);
+            if (typeof particle.scaleSpeed !== 'undefined') {
             createjs.Tween.get(particle, {loop: false})
                 .to({scaleX: particle.scaleSpeed, scaleY: particle.scaleSpeed}, this.configuration.duration / 2, createjs.Ease.circOut)
                 .wait(this.randomFloat(100, 500))
                 .to({scaleX: 0, scaleY: 0, x: particle.velocityX, y: particle.velocityY}, this.configuration.duration / 2, createjs.Ease.quadOut);
+            }
         }
     };
 
@@ -284,8 +301,8 @@ window.CreateJsEffectsLibrary = {};
     Burn.defaultConfiguration = {
         min_radius: 10.0,
         max_radius: 12.0,
-        radial_gradient_colors: ["#fff","#cc0000", '#3A2D23'],
-        radial_gradient_distribution: [0.5, 0.8, 1]
+        radial_gradient_colors: ["rgba(0, 0, 0, 0)","#cc0000", '#3A2D23'],
+        radial_gradient_distribution: [0.2, 0.7, 0.9]
     };
 
     p.initialize = function(x, y) {
@@ -293,7 +310,7 @@ window.CreateJsEffectsLibrary = {};
         this.ContainerInitialize();
 
         this.radius = this.randomFloat(this.configuration.min_radius, this.configuration.max_radius);
-        var g = new createjs.Graphics().beginRadialGradientFill(this.configuration.radial_gradient_colors, this.configuration.radial_gradient_distribution, 0, 0, 1, 0, 0, this.radius).setStrokeStyle(0.1).beginStroke('#cc0000');
+        var g = new createjs.Graphics().beginRadialGradientFill(this.configuration.radial_gradient_colors, this.configuration.radial_gradient_distribution, 0, 0, 0, 0, 0, this.radius).setStrokeStyle(0.1).beginStroke('#cc0000');
         
         this.points = [];
         
